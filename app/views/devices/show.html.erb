@@ -1,0 +1,5 @@
+<h3><%= @device.phone_num %></h3>
+
+<% @device.reports.each do | i | %>
+<p>"<%= i.message %>" from <%= link_to i.sender, report_path(i) %></p>
+<% end %>
