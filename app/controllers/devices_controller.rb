@@ -6,10 +6,25 @@ class DevicesController < ApplicationController
         }, except: [:created_at, :updated_at, :device_id])
     end 
 
+    def new
+        device = Device.new
+    end 
+
+    def create 
+        device = Device.create(device_params)
+        render json: device.to_json
+    end 
+
     def show
         @device = Device.find(params[:id])
         render json: @device.to_json(:include => {
             :reports => {:only => [:sender, :message]}
         }, except: [:created_at, :updated_at, :device_id])
+    end 
+
+    private 
+
+    def device_params 
+        params.require(:device).permit(:phone_num, :carrier)
     end 
 end
