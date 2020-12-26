@@ -8,6 +8,8 @@ class DevicesController < ApplicationController
 
     def show
         @device = Device.find(params[:id])
-        render json: @device.to_json 
+        render json: @device.to_json(:include => {
+            :reports => {:only => [:sender, :message]}
+        }, except: [:created_at, :updated_at, :device_id])
     end 
 end
