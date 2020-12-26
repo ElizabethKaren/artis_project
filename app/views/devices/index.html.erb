@@ -1,7 +1,7 @@
 <h1>Devices</h1>
 
 <ul>
-    <% @devices.each do |i| %>
+    <% devices.each do |i| %>
     <li><%=link_to i.phone_num, device_path(i) %></li>
     <% end %>
 </ul>
