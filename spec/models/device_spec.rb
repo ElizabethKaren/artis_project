@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Device, type: :model do
   context 'validation tests' do 
 
-    it 'ensures device is created with phone number' do 
+    it 'ensures presence of phone number' do 
       device = Device.new(phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: Faker::Company.name).save
       expect(device).to eq(true)
     end 
