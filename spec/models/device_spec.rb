@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'time'
 
 RSpec.describe Device, type: :model do
   context 'validation tests' do 
@@ -8,10 +9,10 @@ RSpec.describe Device, type: :model do
       expect(device).to eq(true)
     end 
 
-    # it 'ensures disabled at defaults to nil' do 
-    # device = Device.new(disabled_at: Time.now, phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: Faker::Company.name).save
-    # expect(device).to eq(false)
-    # end 
+    it 'ensures disabled at defaults to nil' do 
+     device = Device.new(disabled_at: Time.now, phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: Faker::Company.name).save
+     expect(device).to eq(false)
+    end 
 
   end
   
@@ -24,7 +25,8 @@ RSpec.describe Device, type: :model do
       end 
 
       2.times do
-        device = Device.create(params.merge(disabled_at: DateTime.now))
+        device = Device.create(params)
+        device.update(disabled_at: DateTime.today )
       end
     end 
 
