@@ -4,7 +4,6 @@ class Device < ApplicationRecord
     before_validation :check_country_code, on: [ :create, :update ]
     validates :phone_num, presence: true 
     validates :carrier, presence: true 
-    validates :phone_num, length: { in: 10..14 }
     scope :active_devices, -> { where(disabled_at: nil ) }
     scope :inactive_devices, -> { where.not(disabled_at: nil ) }
 
