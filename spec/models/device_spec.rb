@@ -10,7 +10,7 @@ RSpec.describe Device, type: :model do
     end
 
     it 'ensures presence of carrier' do 
-      device = Device.new(phone_num: Faker::PhoneNumber.cell_phone).save
+      device = Device.new(phone_num: Faker::PhoneNumber.cell_phone_in_e164).save
       expect(device).to eq(false)
     end 
 
@@ -18,7 +18,7 @@ RSpec.describe Device, type: :model do
   
 
   context 'scope tests' do
-    let (:params) {{ phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon' }}
+    let (:params) {{ phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: 'Verizon' }}
     before(:each) do
       3.times do
         Device.new(params).save
