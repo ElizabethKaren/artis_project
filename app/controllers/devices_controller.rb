@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
     def index
-        devices = Device.all
+        devices = Device.all.active_devices
         render json: devices.to_json(:include => {
             :reports => {:only => [:sender, :message]}
         }, except: [:created_at, :updated_at, :device_id])
@@ -30,6 +30,11 @@ class DevicesController < ApplicationController
         render json: device.to_json(:include => {
             :reports => {:only => [:sender, :message]}
         }, except: [:created_at, :updated_at, :device_id])
+    end
+
+    def destroy
+        device = Device.find(params[:id])
+        device.update(disabled_at: DateTime.today )
     end 
 
     private 

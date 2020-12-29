@@ -3,7 +3,12 @@ Heartbeat.destroy_all
 Report.destroy_all
 
 10.times do
-    device = Device.create(phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: Faker::Company.name)
+    device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: Faker::Company.name)
+    Heartbeat.create(device_id: device.id)
+end
+
+5.times do
+    device = Device.create(disabled_at: DateTime.new, phone_num: Faker::PhoneNumber.cell_phone, carrier: Faker::Company.name)
     Heartbeat.create(device_id: device.id)
 end
 
