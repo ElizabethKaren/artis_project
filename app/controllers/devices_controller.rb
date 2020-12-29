@@ -34,7 +34,7 @@ class DevicesController < ApplicationController
 
     def destroy
         device = Device.find(params[:id])
-        device.update(disabled_at: DateTime.today )
+        device.update(disabled_at: Time.current )
     end 
 
     private 

@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'date'
+require 'time'
 
 RSpec.describe Device, type: :model do
   context 'validation tests' do 
@@ -18,14 +19,14 @@ RSpec.describe Device, type: :model do
   
 
   context 'scope tests' do
-    let (:params) { {phone_num: Faker::PhoneNumber.cell_phone, carrier: Faker::Company.name} }
+    let (:params) {{ phone_num: Faker::PhoneNumber.cell_phone, carrier: Faker::Company.name }}
     before(:each) do
       3.times do
         Device.new(params).save
       end 
 
       2.times do
-        device = Device.new(params.merge(disabled_at: DateTime.new(2019, 8, 10, 4, 10, 9))).save
+        Device.new(params.merge(disabled_at: Time.current)).save
       end
     end 
 
