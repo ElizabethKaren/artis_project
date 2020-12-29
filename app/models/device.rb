@@ -4,7 +4,7 @@ class Device < ApplicationRecord
     validates :phone_num, presence: true 
     validates :carrier, presence: true 
     validates :phone_num, length: { in: 9..15 }
-    scope :active_devices, -> { where(disabled_at: nil) }
-    scope :inactive_devices, -> { where(disabled_at: true ) }
+    scope :active_devices, -> { where(disabled_at: nil ) }
+    scope :inactive_devices, -> { where.not(disabled_at: nil ) }
 
 end

@@ -1,17 +1,16 @@
 require 'rails_helper'
-require 'date'
 require 'time'
 
 RSpec.describe Device, type: :model do
   context 'validation tests' do 
 
     it 'ensures presence of phone number' do 
-      device = Device.new(carrier: Faker::Company.name).save
+      device = Device.new(carrier: 'T-Mobile').save
       expect(device).to eq(false)
     end
 
     it 'ensures presence of carrier' do 
-      device = Device.new(phone_num: Faker::PhoneNumber.cell_phone ).save
+      device = Device.new(phone_num: Faker::PhoneNumber.cell_phone).save
       expect(device).to eq(false)
     end 
 
@@ -34,7 +33,7 @@ RSpec.describe Device, type: :model do
       expect(Device.active_devices.size).to eq(3)
     end 
 
-    it 'should return inactive devices' do 
+    it 'should return inactive devices' do
       expect(Device.inactive_devices.size).to eq(2)
     end 
 
