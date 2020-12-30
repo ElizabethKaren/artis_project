@@ -3,11 +3,10 @@ class Heartbeat < ApplicationRecord
 
     validates :device_id, presence: true
 
-    validate :is_device_disabled, on: :create
-
-    private 
+    validate :is_device_disabled
 
     def is_device_disabled
-        self.device.disabled_at == nil 
-    end 
+        self.device.disabled_at == nil
+    end
+
 end
