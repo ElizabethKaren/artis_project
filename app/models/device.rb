@@ -3,8 +3,8 @@ class Device < ApplicationRecord
     has_many :heartbeats
     has_many :reports
 
-    validates :phone_num, presence: true
-    validates :carrier, presence: true
+    validates :phone_num, presence: { message: "invalid phone number" }
+    validates :carrier, presence: { message: "invalid phone number" }
 
     validate :parse_num, on: :create
 
