@@ -21,6 +21,7 @@ class DevicesController < ApplicationController
 
     def updated
         device = Device.find(params[:id])
+        
         device.update(device_params)
         render json: device.to_json
     end 

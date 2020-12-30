@@ -4,21 +4,24 @@ Report.destroy_all
 
 phone_companies = ['T-Mobile', 'Verizon', 'Metro by T-Mobile', 'Boost Mobile', 'Xfinity Mobile']
 
-10.times do
-    device = Device.create(phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: phone_companies.sample )
-    Heartbeat.create(device_id: device.id)
-end
+# 10.times do
+#     device = Device.create(phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: phone_companies.sample )
+#     Heartbeat.create(device_id: device.id)
+# end
 
-puts 'Devices created'
+# puts 'Devices created'
 
-5.times do
-    device = Device.create(disabled_at: DateTime.new, phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: phone_companies.sample )
-    Heartbeat.create(device_id: device.id)
-end
+# 5.times do
+#     device = Device.create(disabled_at: DateTime.new, phone_num: Faker::PhoneNumber.cell_phone_in_e164, carrier: phone_companies.sample )
+#     Heartbeat.create(device_id: device.id)
+# end
 
 puts 'Heartbeats created'
 
-Device.create(phone_num: '609 558-1491', carrier: 'Verizon' )
+8.times do
+    device = Device.create(phone_num: '609 558-1491', carrier: phone_companies.sample )
+    Heartbeat.create(device_id: device.id)
+end 
 
 puts 'my device made'
 
