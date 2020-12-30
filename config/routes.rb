@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'errors/invalid_phone_number'
   resources :reports
   resources :heartbeats, only: [:index]
   resources :devices, only: [:index, :show ]
