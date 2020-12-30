@@ -18,15 +18,16 @@ RSpec.describe Device, type: :model do
   
 
   context 'scope tests' do
-    let (:params) {{ phone_num: '666-666-6666', carrier: 'Verizon' }}
+    let (:params) {{ phone_num: '666 666-6666', carrier: 'Verizon' }}
     before(:each) do
-      3.times do
-        Device.new(params).save
-      end 
 
-      2.times do
-        Device.new(params.merge(disabled_at: Time.current)).save
-      end
+      Device.new(params).save
+      Device.new(params).save
+      Device.new(params).save
+
+      Device.new(params.merge(disabled_at: Time.current)).save
+      Device.new(params.merge(disabled_at: Time.current)).save
+
     end 
 
     it 'should return active devices' do 

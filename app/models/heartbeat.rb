@@ -5,6 +5,8 @@ class Heartbeat < ApplicationRecord
 
     validate :is_device_disabled
 
+    private 
+
     def is_device_disabled
         self.device.disabled_at == nil
     end
