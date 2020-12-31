@@ -17,7 +17,7 @@ end
 puts 'Heartbeats created'
 
 5.times do
-    device = Device.create(disabled_at: DateTime.new, phone_num: Faker::PhoneNumber.cell_phone, carrier: phone_companies.sample )
+    Device.create(disabled_at: DateTime.new, phone_num: Faker::PhoneNumber.cell_phone, carrier: phone_companies.sample )
 end
 
 Device.create(phone_num: '609 558-1491', carrier: phone_companies.sample )

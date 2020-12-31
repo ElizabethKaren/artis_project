@@ -1,4 +1,5 @@
 class Heartbeat < ApplicationRecord
+    
     belongs_to :device
 
     validates :is_device_disabled, presence: { message: "invalid phone number" }
