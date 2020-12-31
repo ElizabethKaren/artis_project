@@ -4,12 +4,14 @@ RSpec.describe Report, type: :model do
   context 'validation tests' do 
   
   it 'ensures presence of sender' do 
-    report_without_sender = Report.new(message: Faker::TvShows::TheFreshPrinceOfBelAir.quote, device_id: Device.all.sample.id ).save
+    device = Device.new(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile', disabled_at: Time.current ).save!
+    report_without_sender = Report.new(message: Faker::TvShows::TheFreshPrinceOfBelAir.quote, device_id: device ).save
     expect(report_without_sender).to eq(false)
   end 
 
   it 'ensures presence of message' do 
-    report_without_message = Report.new(sender: Faker::TvShows::TheFreshPrinceOfBelAir.character, device_id: Device.all.sample.id  ).save
+    device = Device.new(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile', disabled_at: Time.current ).save!
+    report_without_message = Report.new(sender: Faker::TvShows::TheFreshPrinceOfBelAir.character, device_id: device ).save
     expect(report_without_message).to eq(false)
   end 
 

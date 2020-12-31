@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get('status' => 'status#index')
   resources :reports
   resources :heartbeats, only: [:index]
   resources :devices, only: [:index, :show ]

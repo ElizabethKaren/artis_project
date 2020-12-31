@@ -6,12 +6,12 @@ RSpec.describe Device, type: :model do
 
     it 'ensures presence of phone number' do 
       device = Device.new(carrier: 'T-Mobile').save
-      expect(device).to eq(false)
+      expect(device).to eql(false)
     end
 
     it 'ensures presence of carrier' do 
       device = Device.new(phone_num: Faker::PhoneNumber.cell_phone).save
-      expect(device).to eq(false)
+      expect(device).to eql(false)
     end 
 #
   end

@@ -12,7 +12,11 @@ class DevicesController < ApplicationController
 
     def create 
         device = Device.create(device_params)
-        render json: device.to_json
+        if device.valid?
+            render json: device.to_json
+        else 
+            render(json: { 'error' => 'Invalid phone number'})
+        end 
     end 
 
     def edit 
