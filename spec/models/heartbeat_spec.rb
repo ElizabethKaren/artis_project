@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'time'
 
 RSpec.describe Heartbeat, type: :model do
 

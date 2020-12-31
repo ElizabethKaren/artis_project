@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'time'
 
 RSpec.describe Device, type: :model do
 
@@ -14,7 +13,7 @@ RSpec.describe Device, type: :model do
       device = Device.new(phone_num: Faker::PhoneNumber.cell_phone).save
       expect(device).to eq(false)
     end 
-
+#
   end
   
   context 'scope tests' do
