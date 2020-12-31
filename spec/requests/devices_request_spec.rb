@@ -16,19 +16,23 @@ RSpec.describe "Devices", type: :request do
         end 
     end
 
-    context 'GET #create' do
-        it 'returns error if phone number not provided' do 
-            device = Device.new(phone_num: nil, carrier: 'Verizon')
-            get("/devices/new")
+    context 'POST #create' do
+        it 'creates a new device' do 
+            post('/devices', params: { device: { phone_num: '609 882-7543', carrier: 'Verizon'} } )
+            expect(response.status).to eq(200)
+        end 
+
+        it 'renders error if phone number not provided' do 
+            post('/devices', params: { device: { phone_num: nil, carrier: 'Verizon'} })
             json = JSON.parse(response.body)
             expect(json['error']).to eq('Invalid phone number')
         end 
 
-        it 'returns 500 status' do 
-            device = Device.new(phone_num: nil, carrier: 'Verizon')
-            get("/devices/new")
+        it 'renders 500 status' do 
+            post('/devices', params: { device: { phone_num: nil, carrier: 'Verizon'} })
             expect(response.status).to eq(500)
         end 
     end 
+
 
 end

@@ -7,7 +7,7 @@ class Heartbeat < ApplicationRecord
     private 
 
     def is_device_disabled
-        self.device.disabled_at == nil
-    end
+        self.device.disabled_at == nil	
+    end	
 
 end

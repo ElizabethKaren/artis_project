@@ -15,7 +15,7 @@ class DevicesController < ApplicationController
         if device.valid?
             render json: device.to_json
         else 
-            render(json: { 'error' => 'Invalid phone number'})
+            render json: { 'error': 'Invalid phone number', status: 500 }
         end 
     end 
 
