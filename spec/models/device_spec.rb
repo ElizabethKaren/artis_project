@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'time'
 
 RSpec.describe Device, type: :model do
+
   context 'validation tests' do 
 
     it 'ensures presence of phone number' do 
@@ -16,7 +17,6 @@ RSpec.describe Device, type: :model do
 
   end
   
-
   context 'scope tests' do
     let (:params) {{ phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon' }}
     before(:each) do
@@ -27,6 +27,7 @@ RSpec.describe Device, type: :model do
 
       Device.new(params.merge(disabled_at: Time.current)).save
       Device.new(params.merge(disabled_at: Time.current)).save
+      Device.new(params.merge(disabled_at: Time.current)).save
 
     end 
 
@@ -35,8 +36,9 @@ RSpec.describe Device, type: :model do
     end 
 
     it 'should return inactive devices' do
-      expect(Device.inactive_devices.size).to eq(2)
+      expect(Device.inactive_devices.size).to eq(3)
     end 
 
-  end 
+  end
+
 end
