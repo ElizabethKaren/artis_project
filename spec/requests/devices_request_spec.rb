@@ -18,20 +18,34 @@ RSpec.describe "Devices", type: :request do
 
     context 'POST #create' do
         it 'creates a new device' do 
-            post('/devices', params: { device: { phone_num: '609 882-7543', carrier: 'Verizon'} } )
+            expect {
+                post('/devices', params: { device: { phone_num: '609 882-7543', carrier: 'Verizon'} } )
+            }.to change { Device.count }.from(0) .to(1)
+
             expect(response.status).to eq(200)
         end 
 
         it 'renders error if phone number not provided' do 
-            post('/devices', params: { device: { phone_num: nil, carrier: 'Verizon'} })
+            post('/devices', params: { device: { carrier: 'Verizon'} })
             json = JSON.parse(response.body)
+            puts json
             expect(json['error']).to eq('Invalid phone number')
         end 
 
         it 'renders 500 status' do 
-            post('/devices', params: { device: { phone_num: nil, carrier: 'Verizon'} })
+            post('/devices', params: { device: { carrier: 'Verizon'} })
             expect(response.status).to eq(500)
         end 
+    end 
+
+    describe 'DELETE #device' do 
+
+        it 'Updates disabled_at to current time' do 
+            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon')
+            delete("/devices/#{device.id}")
+            expect(response.status).to eq(204)
+        end 
+
     end 
 
 

@@ -15,7 +15,7 @@ class DevicesController < ApplicationController
         if device.valid?
             render json: device.to_json
         else 
-            render json: { 'error' => 'Invalid phone number', 'status' => 500 }, status: :internal_server_error
+            render json: { 'status' => 500, 'error' => 'Invalid phone number' }, status: :internal_server_error
         end 
     end 
 
@@ -29,7 +29,7 @@ class DevicesController < ApplicationController
             device.update(device_params)
             render json: device.to_json
         else 
-            render json: { error: 'Invalid phone number', status: 500 }, status: 500
+            render json: { 'status' => 500, 'error' => 'Invalid phone number' }, status: :internal_server_error
         end 
         
     end 
