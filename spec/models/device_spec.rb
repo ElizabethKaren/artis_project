@@ -18,7 +18,7 @@ RSpec.describe Device, type: :model do
   
 
   context 'scope tests' do
-    let (:params) {{ phone_num: '666 666-6666', carrier: 'Verizon' }}
+    let (:params) {{ phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon' }}
     before(:each) do
 
       Device.new(params).save

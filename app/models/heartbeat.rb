@@ -8,7 +8,8 @@ class Heartbeat < ApplicationRecord
     private 
 
     def is_device_disabled
-        self.device.disabled_at == nil
+        # self.device.disabled_at == nil
+        Devices.active_devices.include?(self.device)
     end
 
 end
