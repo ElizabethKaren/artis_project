@@ -12,7 +12,7 @@ class DevicesController < ApplicationController
 
     def create 
         device = Device.create(device_params)
-        if device.valid?
+        if device.id
             render json: device.to_json
         else 
             render json: { 'status' => 500, 'error' => 'Invalid phone number' }, status: :internal_server_error
@@ -25,7 +25,7 @@ class DevicesController < ApplicationController
 
     def updated
         device = Device.find(params[:id])
-        if device.valid?
+        if device.id
             device.update(device_params)
             render json: device.to_json
         else 
