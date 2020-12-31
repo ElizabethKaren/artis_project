@@ -7,7 +7,7 @@ class DevicesController < ApplicationController
     end 
 
     def new
-        device = Device.new
+        Device.new
     end 
 
     def create 
@@ -20,7 +20,7 @@ class DevicesController < ApplicationController
     end 
 
     def edit 
-        device = Device.find(params[:id])
+        Device.find(params[:id])
     end 
 
     def updated
