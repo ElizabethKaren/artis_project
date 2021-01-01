@@ -28,12 +28,32 @@ RSpec.describe "Devices", type: :request do
         it 'renders error if phone number not provided' do 
             post('/devices', params: { device: { carrier: 'Verizon'} })
             json = JSON.parse(response.body)
-            puts json
             expect(json['error']).to eq('Invalid phone number')
         end 
 
         it 'renders 500 status' do 
             post('/devices', params: { device: { carrier: 'Verizon'} })
+            expect(response.status).to eq(500)
+        end 
+    end
+
+    context 'PATCH #update' do
+        it 'updates a device' do 
+            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile')
+            patch("/devices/#{device.id}", params: { device: { phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon'} } )
+            expect(response.status).to eq(200)
+        end 
+
+        it 'renders error if phone number not provided' do 
+            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile')
+            patch("/devices/#{device.id}", params: { device: { phone_num: nil, carrier: 'Verizon'} })
+            json = JSON.parse(response.body)
+            expect(json['error']).to eq('Invalid phone number')
+        end 
+
+        it 'renders 500 status' do 
+            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile')
+            patch("/devices/#{device.id}", params: { device: { phone_num: nil, carrier: 'Verizon'} })
             expect(response.status).to eq(500)
         end 
     end 

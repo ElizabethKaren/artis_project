@@ -23,15 +23,14 @@ class DevicesController < ApplicationController
         Device.find(params[:id])
     end 
 
-    def updated
+    def update
         device = Device.find(params[:id])
-        if device.id
-            device.update(device_params)
+        device.update(device_params)
+        if device.update(device_params)
             render json: device.to_json
         else 
             render json: { 'status' => 500, 'error' => 'Invalid phone number' }, status: :internal_server_error
         end 
-        
     end 
 
     def show
