@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :devices
+  resources :devices, except: :delete 
   resources :reports, only: [:index, :show, :create ]
   resources :heartbeats, except: [:update, :destroy]
   post '/api/alive', to: 'heartbeats#create'

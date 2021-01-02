@@ -37,33 +37,13 @@ RSpec.describe "Devices", type: :request do
         end 
     end
 
-    context 'PATCH #update' do
-        it 'updates a device' do 
-            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile')
-            patch("/devices/#{device.id}", params: { device: { phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon'} } )
-            expect(response.status).to eq(200)
-        end 
-
-        it 'renders error if phone number not provided' do 
-            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile')
-            patch("/devices/#{device.id}", params: { device: { phone_num: nil, carrier: 'Verizon'} })
-            json = JSON.parse(response.body)
-            expect(json['error']).to eq('Invalid phone number')
-        end 
-
-        it 'renders 500 status' do 
-            device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'T-Mobile')
-            patch("/devices/#{device.id}", params: { device: { phone_num: nil, carrier: 'Verizon'} })
-            expect(response.status).to eq(500)
-        end 
-    end 
-
-    describe 'DELETE #device' do 
+    describe 'if app is deleted device updated disabled at to current time' do 
 
         it 'Updates disabled_at to current time' do 
             device = Device.create(phone_num: Faker::PhoneNumber.cell_phone, carrier: 'Verizon')
-            delete("/devices/#{device.id}")
-            expect(response.status).to eq(204)
+            patch("/devices/#{device.id}")
+            json = JSON.parse(response.body)
+            expect(json['message']).to eq("#{device.phone_num} disabled at #{Time.current}")
         end 
 
     end 
