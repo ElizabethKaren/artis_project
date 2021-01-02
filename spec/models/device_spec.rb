@@ -13,7 +13,6 @@ RSpec.describe Device, type: :model do
       device = Device.new(phone_num: Faker::PhoneNumber.cell_phone).save
       expect(device).to eql(false)
     end 
-#
   end
   
   context 'scope tests' do
