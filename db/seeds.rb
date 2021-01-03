@@ -27,3 +27,5 @@ puts 'my device made'
 50.times do
     Report.create(sender: Faker::TvShows::TheFreshPrinceOfBelAir.character, message: Faker::TvShows::TheFreshPrinceOfBelAir.quote, device_id: Device.all.sample.id )
 end 
+
+Report.create(sender: 'Liz', message: '🍋🍋🍋🍓🍓🍓', device_id: Device.all.sample.id )
