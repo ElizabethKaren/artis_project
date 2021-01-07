@@ -13,7 +13,7 @@ class HeartbeatsController < ApplicationController
         if heatbeat.id 
             render json: heatbeat.to_json
         else
-            render json: { 'status' => 500, 'error' => 'Invalid phone number' }, status: :internal_server_error
+            render json: { 'status': 500, 'error': 'Invalid phone number' }, status: :internal_server_error
         end
     end
 

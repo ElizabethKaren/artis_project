@@ -15,7 +15,7 @@ class DevicesController < ApplicationController
         if device.id
             render json: device.to_json
         else 
-            render json: { 'status' => 500, 'error' => 'Invalid phone number' }, status: :internal_server_error
+            render json: { 'status': 500, 'error': 'Invalid phone number' }, status: :internal_server_error
         end 
     end 
 
@@ -26,7 +26,7 @@ class DevicesController < ApplicationController
     def update
         device = Device.find(params[:id])
         device.update(disabled_at: Time.current )
-        render json: { 'message' => "#{device.phone_num} disabled at #{Time.current}" }
+        render json: { 'message': "#{device.phone_num} disabled at #{Time.current}" }
     end 
 
     def show
